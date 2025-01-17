@@ -13,13 +13,13 @@ int main() {
     InitWindow(Game::ScreenWidth, Game::ScreenHeight, Game::PROJECT_NAME);
     SetTargetFPS(60);
 
-    Car cars[15];
+    Car cars[Game::cars_max];
 
     // Autos random auf y-Aches positionieren
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < Game::cars_max; i++)
     {
-        cars[i].position.y = (float) GetRandomValue(50, 200);
-        cars[i].position.x = (float) GetRandomValue(0, 3500);
+        cars[i].position.y = (float) GetRandomValue(Game::street_y_start, Game::street_width - Game::street_padding);
+        cars[i].position.x = (float) GetRandomValue(0, Game::cars_spawning_range);
     }
 
 #ifdef GAME_START_FULLSCREEN
@@ -35,10 +35,10 @@ int main() {
     {
         // Autos bewegen
         // Fährt ein Auto links aus dem Bildschirm, wird es random
-        // außerhalb des Bildschirms plaziert
-        for (int i = 0; i < 15; i++) {
+        // außerhalb des Bildschirms platziert
+        for (int i = 0; i < Game::cars_max; i++) {
             if (cars[i].position.x < (float)(0 - cars[i].texture.width))
-                cars[i].position.x = (float) GetRandomValue(960, 4460);
+                cars[i].position.x = (float) GetRandomValue(Game::ScreenWidth, Game::cars_spawning_range + Game::ScreenWidth);
             else
                 cars[i].position.x -= (float) cars[i].speed;
         }
@@ -50,12 +50,13 @@ int main() {
             ClearBackground(WHITE);
 //  Wir zeichnen alle Autos aus dem car-Array. Wir nutzen dafür aber nicht die klassische
 //  C for-Schleife, sondern die modernere C++ foreach Schleife.
-//            for (int i = 0; i < 15; i++)
+//            for (int i = 0; i < Game::cars_max; i++)
 //            {
 //                DrawTexture(cars[i].texture, (int) cars[i].position.x, (int) cars[i].position.y, WHITE);
 //            }
 //
-            DrawRectangle(0, 50, 960, 260, GRAY);
+            // Strasse zeichnen
+            DrawRectangle(0, Game::street_y_start, Game::ScreenWidth, Game::street_width, GRAY);
 
             for (auto car : cars)
                 DrawTexture(car.texture, (int) car.position.x, (int) car.position.y, WHITE);

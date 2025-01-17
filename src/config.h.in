@@ -10,5 +10,12 @@ namespace Game {
     inline constexpr int ScreenWidth = 960;
     inline constexpr int ScreenHeight = 540;
 
+    inline constexpr int cars_max = 15;
+    inline constexpr int cars_spawning_range = 3500;
+
+    inline constexpr int street_y_start = 50;
+    inline constexpr int street_width = 200;
+    inline constexpr int street_padding = 15;
+
     //#define GAME_START_FULLSCREEN
 }
