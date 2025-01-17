@@ -22,7 +22,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 # (Unfortunately, there is no easy way to link the C++ standard libraries
 # statically and other libraries dynamically.)
 if(UNIX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
     target_link_libraries(${PROJECT_NAME} raylib)
 else()
     target_link_libraries(${PROJECT_NAME} raylib -static)
