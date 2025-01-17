@@ -1,4 +1,5 @@
 ﻿#include <cstdlib>
+#include <iostream>
 
 #include "raylib.h"
 
@@ -13,6 +14,15 @@ int main() {
     SetTargetFPS(60);
 
     Car cars[15];
+
+    // Autos random auf y-Aches positionieren
+
+
+    for (int i = 0; i < 15; i++)
+    {
+        cars[i].position.y = (float) GetRandomValue(50, 200);
+        cars[i].position.x = (float) GetRandomValue(0, 3500);
+    }
 
 #ifdef GAME_START_FULLSCREEN
     ToggleFullscreen();
