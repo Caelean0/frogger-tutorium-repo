@@ -10,7 +10,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(${PROJECT_NAME} main.cpp
         Car.cpp
-        Car.h)
+        Car.h
+        frog.cpp
+        frog.h)
 
 # Add config.h.in file
 configure_file(config.h.in config.h)

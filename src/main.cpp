@@ -6,6 +6,7 @@
 #include "config.h"
 
 #include "Car.h"
+#include "Frog.h"
 
 int main() {
     // Raylib initialization
@@ -14,6 +15,7 @@ int main() {
     SetTargetFPS(60);
 
     Car cars[Game::cars_max];
+    Frog frog;
 
     // Autos random auf y-Aches positionieren
     for (int i = 0; i < Game::cars_max; i++)
@@ -33,6 +35,35 @@ int main() {
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
+        // Input abfragen für Frosch und Frosch bewegen
+        if (frog.cooldown_move > 0)
+            frog.cooldown_move--;
+        else
+        {
+            if (IsKeyDown(KEY_UP))
+            {
+                frog.position.y -= (float) frog.speed;
+                frog.cooldown_move = frog.def_cooldowntime;
+            }
+            if (IsKeyDown(KEY_DOWN))
+            {
+                frog.position.y += (float) frog.speed;
+                frog.cooldown_move = frog.def_cooldowntime;
+            }
+
+            if (IsKeyDown(KEY_LEFT))
+            {
+                frog.position.x -= (float) frog.speed;
+                frog.cooldown_move = frog.def_cooldowntime;
+            }
+            if (IsKeyDown(KEY_RIGHT))
+            {
+                frog.position.x += (float) frog.speed;
+                frog.cooldown_move = frog.def_cooldowntime;
+            }
+        }
+
+
         // Autos bewegen
         // Fährt ein Auto links aus dem Bildschirm, wird es random
         // außerhalb des Bildschirms platziert
@@ -57,6 +88,8 @@ int main() {
 //
             // Strasse zeichnen
             DrawRectangle(0, Game::street_y_start, Game::ScreenWidth, Game::street_width, GRAY);
+
+            DrawTexture(frog.texture, (int) frog.position.x, (int) frog.position.y, WHITE);
 
             for (auto car : cars)
                 DrawTexture(car.texture, (int) car.position.x, (int) car.position.y, WHITE);
