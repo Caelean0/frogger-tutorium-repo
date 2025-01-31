@@ -7,15 +7,17 @@ namespace Game {
     inline constexpr const char* PROJECT_VERSION_MINOR = "@PROJECT_VERSION_MINOR@";
     inline constexpr const char* PROJECT_VERSION_PATCH = "@PROJECT_VERSION_PATCH@";
 
-    inline constexpr int ScreenWidth = 960;
-    inline constexpr int ScreenHeight = 540;
+    inline constexpr int ScreenWidth = 1000;
+    inline constexpr int ScreenHeight = 1000;
 
-    inline constexpr int cars_max = 15;
+    inline constexpr int cars_max = 40;
     inline constexpr int cars_spawning_range = 3500;
 
-    inline constexpr int street_y_start = 50;
+    inline constexpr int street_y_start = 150;
     inline constexpr int street_width = 200;
-    inline constexpr int street_padding = 15;
+    inline constexpr int street_padding = 60;
+
+    inline constexpr Vector2 frogPos = {465.0,800.0};
 
     //#define GAME_START_FULLSCREEN
 }
