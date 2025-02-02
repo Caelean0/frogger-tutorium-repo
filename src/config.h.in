@@ -17,7 +17,7 @@ namespace Game {
     inline constexpr int street_width = 200;
     inline constexpr int street_padding = 60;
 
-    inline constexpr Vector2 frogPos = {465.0,800.0};
+    inline constexpr Vector2 frogStartPos = {465.0,800.0};
 
     //#define GAME_START_FULLSCREEN
 }
